@@ -763,6 +763,10 @@ static void set_dec_mode(VTermState *state, int num, int val)
                         VTERM_PROP_MOUSE_MOVE);
     break;
 
+  case 1004:
+    state->mode.report_focus = val;
+    break;
+
   case 1005:
     state->mouse_protocol = val ? MOUSE_UTF8 : MOUSE_X10;
     break;
@@ -841,6 +845,10 @@ static void request_dec_mode(VTermState *state, int num)
 
     case 1003:
       reply = state->mouse_flags == (MOUSE_WANT_CLICK|MOUSE_WANT_MOVE);
+      break;
+
+    case 1004:
+      reply = state->mode.report_focus;
       break;
 
     case 1005:
@@ -1677,6 +1685,7 @@ void vterm_state_reset(VTermState *state, int hard)
   state->mode.origin          = 0;
   state->mode.leftrightmargin = 0;
   state->mode.bracketpaste    = 0;
+  state->mode.report_focus    = 0;
 
   state->vt->mode.ctrl8bit   = 0;
 

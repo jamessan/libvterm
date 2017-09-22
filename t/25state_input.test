@@ -1,4 +1,5 @@
 INIT
+WANTSCREEN
 WANTSTATE
 
 !Unmodified ASCII
@@ -130,3 +131,16 @@ PASTE START
   output "\e[200~"
 PASTE END
   output "\e[201~"
+
+!Focus reporting disabled
+RESET
+FOCUS LOST
+FOCUS GAINED
+
+!Focus reporting enabled
+RESET
+PUSH "\e[?1004h"
+FOCUS OUT
+  output "\e[O"
+FOCUS IN
+  output "\e[I"

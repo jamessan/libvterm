@@ -323,6 +323,10 @@ int vterm_screen_get_cell(const VTermScreen *screen, VTermPos pos, VTermScreenCe
 
 int vterm_screen_is_eol(const VTermScreen *screen, VTermPos pos);
 
+void vterm_screen_focus_in(VTermScreen *screen);
+
+void vterm_screen_focus_out(VTermScreen *screen);
+
 // ---------
 // Utilities
 // ---------

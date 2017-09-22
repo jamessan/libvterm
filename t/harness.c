@@ -624,6 +624,16 @@ int main(int argc, char **argv)
         goto abort_line;
     }
 
+    else if(strstartswith(line, "FOCUS ")) {
+      char *linep = line + 6;
+      if(streq(linep, "OUT"))
+        vterm_screen_focus_out(screen);
+      else if(streq(linep, "IN"))
+        vterm_screen_focus_in(screen);
+      else
+        goto abort_line;
+    }
+
     else if(strstartswith(line, "MOUSEMOVE ")) {
       char *linep = line + 10;
       int row, col, len;

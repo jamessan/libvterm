@@ -812,6 +812,18 @@ int vterm_screen_is_eol(const VTermScreen *screen, VTermPos pos)
   return 1;
 }
 
+void vterm_screen_focus_in(VTermScreen *screen)
+{
+  if(screen->state->mode.report_focus)
+    vterm_push_output_sprintf_ctrl(screen->vt, C1_CSI, "I");
+}
+
+void vterm_screen_focus_out(VTermScreen *screen)
+{
+  if(screen->state->mode.report_focus)
+    vterm_push_output_sprintf_ctrl(screen->vt, C1_CSI, "O");
+}
+
 VTermScreen *vterm_obtain_screen(VTerm *vt)
 {
   if(vt->screen)
